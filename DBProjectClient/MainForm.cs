@@ -13,5 +13,41 @@ namespace DBProjectClient {
         public MainForm() {
             InitializeComponent();
         }
+
+        private void MainForm_Load(object sender, EventArgs e) {
+
+        }
+
+        private void MatchHistoryButton_Click(object sender, EventArgs e) {
+
+        }
+
+        private void ChampionsButton_Click(object sender, EventArgs e) {
+
+        }
+
+        private void LootsButton_Click(object sender, EventArgs e) {
+
+        }
+
+        private void StickersButton_Click(object sender, EventArgs e) {
+
+        }
+
+        private void FriendButton_Click(object sender, EventArgs e) {
+
+        }
+
+        private void UnfriendButton_Click(object sender, EventArgs e) {
+
+        }
+
+        private void BlockButton_Click(object sender, EventArgs e) {
+
+        }
+
+        private void UnblockButton_Click(object sender, EventArgs e) {
+
+        }
     }
 }

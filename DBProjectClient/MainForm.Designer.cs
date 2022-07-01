@@ -116,6 +116,7 @@
             this.FriendButton.TabIndex = 14;
             this.FriendButton.Text = "Friend";
             this.FriendButton.UseVisualStyleBackColor = true;
+            this.FriendButton.Click += new System.EventHandler(this.FriendButton_Click);
             // 
             // BlockButton
             // 
@@ -125,6 +126,7 @@
             this.BlockButton.TabIndex = 14;
             this.BlockButton.Text = "Block";
             this.BlockButton.UseVisualStyleBackColor = true;
+            this.BlockButton.Click += new System.EventHandler(this.BlockButton_Click);
             // 
             // UnfriendButton
             // 
@@ -134,6 +136,7 @@
             this.UnfriendButton.TabIndex = 14;
             this.UnfriendButton.Text = "Unfriend";
             this.UnfriendButton.UseVisualStyleBackColor = true;
+            this.UnfriendButton.Click += new System.EventHandler(this.UnfriendButton_Click);
             // 
             // UnblockButton
             // 
@@ -143,6 +146,7 @@
             this.UnblockButton.TabIndex = 14;
             this.UnblockButton.Text = "Unblock";
             this.UnblockButton.UseVisualStyleBackColor = true;
+            this.UnblockButton.Click += new System.EventHandler(this.UnblockButton_Click);
             // 
             // MatchHistoryButton
             // 
@@ -152,6 +156,7 @@
             this.MatchHistoryButton.TabIndex = 15;
             this.MatchHistoryButton.Text = "Match History";
             this.MatchHistoryButton.UseVisualStyleBackColor = true;
+            this.MatchHistoryButton.Click += new System.EventHandler(this.MatchHistoryButton_Click);
             // 
             // ChampionsButton
             // 
@@ -161,6 +166,7 @@
             this.ChampionsButton.TabIndex = 15;
             this.ChampionsButton.Text = "Champions";
             this.ChampionsButton.UseVisualStyleBackColor = true;
+            this.ChampionsButton.Click += new System.EventHandler(this.ChampionsButton_Click);
             // 
             // LootsButton
             // 
@@ -170,6 +176,7 @@
             this.LootsButton.TabIndex = 15;
             this.LootsButton.Text = "Loots";
             this.LootsButton.UseVisualStyleBackColor = true;
+            this.LootsButton.Click += new System.EventHandler(this.LootsButton_Click);
             // 
             // StickersButton
             // 
@@ -179,6 +186,7 @@
             this.StickersButton.TabIndex = 15;
             this.StickersButton.Text = "Stickers";
             this.StickersButton.UseVisualStyleBackColor = true;
+            this.StickersButton.Click += new System.EventHandler(this.StickersButton_Click);
             // 
             // MainForm
             // 
@@ -203,6 +211,7 @@
             this.Controls.Add(this.AvatarPictureBox);
             this.Name = "MainForm";
             this.Text = "Game";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.AvatarPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AvatarBorderPictureBox)).EndInit();
             this.ResumeLayout(false);
