@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DBProjectClient.Util;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,7 +16,9 @@ namespace DBProjectClient {
         }
 
         private void MainForm_Load(object sender, EventArgs e) {
+            var account = Server.GetGameAccount(Config.AccountId);
 
+            NameLabel.Text = account.name;
         }
 
         private void MatchHistoryButton_Click(object sender, EventArgs e) {

@@ -16,10 +16,16 @@ namespace DBProjectClient.Util {
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        private static Dictionary<string, dynamic> Request(string path, Dictionary<string, dynamic> data) {
+        private static Dictionary<string, dynamic> Post(string path, Dictionary<string, dynamic> data) {
             var content = new StringContent(JsonConvert.SerializeObject(data));
             HttpResponseMessage response = client.PostAsync(path, content).Result;
-            //response.EnsureSuccessStatusCode();
+            string responseText = response.Content.ReadAsStringAsync().Result;
+            var responseData = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(responseText) ?? new Dictionary<string, dynamic>();
+            responseData["status"] = response.StatusCode;
+            return responseData;
+        }
+        private static Dictionary<string, dynamic> Get(string path) {
+            HttpResponseMessage response = client.GetAsync(path).Result;
             string responseText = response.Content.ReadAsStringAsync().Result;
             var responseData = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(responseText) ?? new Dictionary<string, dynamic>();
             responseData["status"] = response.StatusCode;
@@ -31,9 +37,11 @@ namespace DBProjectClient.Util {
                 {"username", username},
                 {"password", password},
             };
-            var response = Request($"account/login", data);
+            var response = Post($"account/login", data);
             if (response["status"] == HttpStatusCode.OK) {
                 Config.Token = response["data"].token;
+                Config.AccountId = response["data"].account_id;
+                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Config.Token}");
             }
             else {
                 throw new Exception(response["error"].message);
@@ -45,9 +53,20 @@ namespace DBProjectClient.Util {
                 {"username", username},
                 {"password", password},
             };
-            var response = Request($"account", data);
+            var response = Post($"account", data);
             if (response["status"] == HttpStatusCode.OK) {
                 Config.Token = response["data"].token;
+                Config.AccountId = response["data"].account_id;
+                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Config.Token}");
+            }
+            else {
+                throw new Exception(response["error"].message);
+            }
+        }
+        public static dynamic GetGameAccount(int accountId) {
+            var response = Get($"account/{accountId}/game");
+            if (response["status"] == HttpStatusCode.OK) {
+                return response["data"];
             }
             else {
                 throw new Exception(response["error"].message);

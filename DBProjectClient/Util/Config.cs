@@ -13,6 +13,8 @@ namespace DBProjectClient.Util {
         private string server = "";
         [JsonProperty]
         private string token = "";
+        [JsonProperty]
+        private int accountId;
 
         public static void Save() {
             File.Write("config.json", JsonConvert.SerializeObject(config, Formatting.Indented));
@@ -27,6 +29,13 @@ namespace DBProjectClient.Util {
             get => config.token;
             set {
                 config.token = value;
+                Save();
+            }
+        }
+        public static int AccountId {
+            get => config.accountId;
+            set {
+                config.accountId = value;
                 Save();
             }
         }
