@@ -22,6 +22,11 @@ namespace DBProjectClient {
             }
             try {
                 Server.Login($"{NameTextBox.Text}#{TagTextBox.Text}", PasswordTextBox.Text);
+
+                Hide();
+                MainForm mainForm = new MainForm();
+                mainForm.Show();
+                mainForm.Closed += (s, args) => Close();
             }
             catch (Exception ex) {
                 MessageBox.Show(ex.Message);
@@ -30,7 +35,6 @@ namespace DBProjectClient {
 
         private void RegisterButton_Click(object sender, EventArgs e) {
             Hide();
-            
             RegisterForm registerForm = new RegisterForm();
             registerForm.Show();
             registerForm.Closed += (s, args) => Close();

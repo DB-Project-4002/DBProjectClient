@@ -31,6 +31,11 @@ namespace DBProjectClient {
             }
             try {
                 Server.Register(EmailTextBox.Text, $"{NameTextBox.Text}#{TagTextBox.Text}", PasswordTextBox.Text);
+
+                Hide();
+                MainForm mainForm = new MainForm();
+                mainForm.Show();
+                mainForm.Closed += (s, args) => Close();
             }
             catch (Exception ex) {
                 MessageBox.Show(ex.Message);
