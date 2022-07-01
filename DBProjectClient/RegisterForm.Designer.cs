@@ -42,6 +42,7 @@
             this.RegisterButton.TabIndex = 11;
             this.RegisterButton.Text = "Register";
             this.RegisterButton.UseVisualStyleBackColor = true;
+            this.RegisterButton.Click += new System.EventHandler(this.RegisterButton_Click);
             // 
             // PasswordTextBox
             // 
@@ -106,8 +107,7 @@
             this.EmailTextBox.Location = new System.Drawing.Point(50, 64);
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.Size = new System.Drawing.Size(184, 23);
-            this.EmailTextBox.TabIndex = 10;
-            this.EmailTextBox.UseSystemPasswordChar = true;
+            this.EmailTextBox.TabIndex = 1;
             // 
             // RegisterForm
             // 
