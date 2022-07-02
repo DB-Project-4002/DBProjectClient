@@ -210,6 +210,7 @@
             this.Controls.Add(this.AvatarBorderPictureBox);
             this.Controls.Add(this.AvatarPictureBox);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Game";
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.AvatarPictureBox)).EndInit();

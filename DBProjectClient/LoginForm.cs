@@ -39,5 +39,14 @@ namespace DBProjectClient {
             registerForm.Show();
             registerForm.Closed += (s, args) => Close();
         }
+
+        private void LoginForm_Shown(object sender, EventArgs e) {
+            if (Config.AccountId != 0) {
+                Hide();
+                MainForm mainForm = new MainForm();
+                mainForm.Show();
+                mainForm.Closed += (s, args) => Close();
+            }
+        }
     }
 }

@@ -11,13 +11,13 @@ namespace DBProjectClient.Util {
     public static class Server {
         private static HttpClient client = new HttpClient();
         public static void Initialize() {
-            client.BaseAddress = new Uri($"http://{Config.Server}:80/");
+            client.BaseAddress = new Uri($"http://{Config.Server}:8080/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
         private static Dictionary<string, dynamic> Post(string path, Dictionary<string, dynamic> data) {
-            var content = new StringContent(JsonConvert.SerializeObject(data));
+            var content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
             HttpResponseMessage response = client.PostAsync(path, content).Result;
             string responseText = response.Content.ReadAsStringAsync().Result;
             var responseData = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(responseText) ?? new Dictionary<string, dynamic>();
@@ -38,9 +38,9 @@ namespace DBProjectClient.Util {
                 {"password", password},
             };
             var response = Post($"account/login", data);
-            if (response["status"] == HttpStatusCode.OK) {
+            if (response["status"] == HttpStatusCode.Created) {
                 Config.Token = response["data"].token;
-                Config.AccountId = response["data"].account_id;
+                //Config.AccountId = response["data"].account_id;
                 client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Config.Token}");
             }
             else {
@@ -50,13 +50,14 @@ namespace DBProjectClient.Util {
         public static void Register(string email, string username, string password) {
             Dictionary<string, dynamic> data = new Dictionary<string, dynamic> {
                 {"email", email},
-                {"username", username},
+                {"name", username.Split("#")[0]},
+                {"tag", username.Split("#")[1]},
                 {"password", password},
             };
             var response = Post($"account", data);
-            if (response["status"] == HttpStatusCode.OK) {
+            if (response["status"] == HttpStatusCode.Created) {
                 Config.Token = response["data"].token;
-                Config.AccountId = response["data"].account_id;
+                //Config.AccountId = response["data"].account_id;
                 client.DefaultRequestHeaders.Add("Authorization", $"Bearer {Config.Token}");
             }
             else {
@@ -65,6 +66,15 @@ namespace DBProjectClient.Util {
         }
         public static dynamic GetGameAccount(int accountId) {
             var response = Get($"account/{accountId}/game");
+            if (response["status"] == HttpStatusCode.OK) {
+                return response["data"][0];
+            }
+            else {
+                throw new Exception(response["error"].message);
+            }
+        }
+        public static dynamic GetFriends(int accountId) {
+            var response = Get($"account/{accountId}/friends");
             if (response["status"] == HttpStatusCode.OK) {
                 return response["data"];
             }

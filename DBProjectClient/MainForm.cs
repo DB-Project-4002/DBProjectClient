@@ -17,7 +17,11 @@ namespace DBProjectClient {
 
         private void MainForm_Load(object sender, EventArgs e) {
             var account = Server.GetGameAccount(Config.AccountId);
+            var friends = Server.GetFriends(Config.AccountId);
 
+            foreach(var friend in friends) {
+                FriendsListBox.Items.Add(friend);
+            }
             NameLabel.Text = account.name;
         }
 
