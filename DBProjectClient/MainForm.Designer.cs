@@ -39,6 +39,7 @@
             this.ChampionsButton = new System.Windows.Forms.Button();
             this.LootsButton = new System.Windows.Forms.Button();
             this.StickersButton = new System.Windows.Forms.Button();
+            this.BlockedsListBox = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.AvatarPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AvatarBorderPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -73,13 +74,13 @@
             this.FriendsListBox.ItemHeight = 15;
             this.FriendsListBox.Location = new System.Drawing.Point(285, 12);
             this.FriendsListBox.Name = "FriendsListBox";
-            this.FriendsListBox.Size = new System.Drawing.Size(184, 334);
+            this.FriendsListBox.Size = new System.Drawing.Size(184, 229);
             this.FriendsListBox.TabIndex = 2;
             // 
             // TagLabel
             // 
             this.TagLabel.AutoSize = true;
-            this.TagLabel.Location = new System.Drawing.Point(403, 370);
+            this.TagLabel.Location = new System.Drawing.Point(403, 365);
             this.TagLabel.Name = "TagLabel";
             this.TagLabel.Size = new System.Drawing.Size(14, 15);
             this.TagLabel.TabIndex = 12;
@@ -88,7 +89,7 @@
             // UsernameLabel
             // 
             this.UsernameLabel.AutoSize = true;
-            this.UsernameLabel.Location = new System.Drawing.Point(285, 349);
+            this.UsernameLabel.Location = new System.Drawing.Point(285, 344);
             this.UsernameLabel.Name = "UsernameLabel";
             this.UsernameLabel.Size = new System.Drawing.Size(60, 15);
             this.UsernameLabel.TabIndex = 13;
@@ -96,21 +97,21 @@
             // 
             // TagTextBox
             // 
-            this.TagTextBox.Location = new System.Drawing.Point(419, 367);
+            this.TagTextBox.Location = new System.Drawing.Point(419, 362);
             this.TagTextBox.Name = "TagTextBox";
             this.TagTextBox.Size = new System.Drawing.Size(50, 23);
             this.TagTextBox.TabIndex = 11;
             // 
             // NameTextBox
             // 
-            this.NameTextBox.Location = new System.Drawing.Point(285, 367);
+            this.NameTextBox.Location = new System.Drawing.Point(285, 362);
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.Size = new System.Drawing.Size(116, 23);
             this.NameTextBox.TabIndex = 10;
             // 
             // FriendButton
             // 
-            this.FriendButton.Location = new System.Drawing.Point(285, 396);
+            this.FriendButton.Location = new System.Drawing.Point(285, 391);
             this.FriendButton.Name = "FriendButton";
             this.FriendButton.Size = new System.Drawing.Size(89, 23);
             this.FriendButton.TabIndex = 14;
@@ -120,7 +121,7 @@
             // 
             // BlockButton
             // 
-            this.BlockButton.Location = new System.Drawing.Point(380, 396);
+            this.BlockButton.Location = new System.Drawing.Point(380, 391);
             this.BlockButton.Name = "BlockButton";
             this.BlockButton.Size = new System.Drawing.Size(89, 23);
             this.BlockButton.TabIndex = 14;
@@ -130,7 +131,7 @@
             // 
             // UnfriendButton
             // 
-            this.UnfriendButton.Location = new System.Drawing.Point(285, 425);
+            this.UnfriendButton.Location = new System.Drawing.Point(285, 420);
             this.UnfriendButton.Name = "UnfriendButton";
             this.UnfriendButton.Size = new System.Drawing.Size(89, 23);
             this.UnfriendButton.TabIndex = 14;
@@ -140,7 +141,7 @@
             // 
             // UnblockButton
             // 
-            this.UnblockButton.Location = new System.Drawing.Point(380, 425);
+            this.UnblockButton.Location = new System.Drawing.Point(380, 420);
             this.UnblockButton.Name = "UnblockButton";
             this.UnblockButton.Size = new System.Drawing.Size(89, 23);
             this.UnblockButton.TabIndex = 14;
@@ -150,7 +151,7 @@
             // 
             // MatchHistoryButton
             // 
-            this.MatchHistoryButton.Location = new System.Drawing.Point(12, 134);
+            this.MatchHistoryButton.Location = new System.Drawing.Point(12, 129);
             this.MatchHistoryButton.Name = "MatchHistoryButton";
             this.MatchHistoryButton.Size = new System.Drawing.Size(267, 74);
             this.MatchHistoryButton.TabIndex = 15;
@@ -160,7 +161,7 @@
             // 
             // ChampionsButton
             // 
-            this.ChampionsButton.Location = new System.Drawing.Point(12, 214);
+            this.ChampionsButton.Location = new System.Drawing.Point(12, 209);
             this.ChampionsButton.Name = "ChampionsButton";
             this.ChampionsButton.Size = new System.Drawing.Size(267, 74);
             this.ChampionsButton.TabIndex = 15;
@@ -170,7 +171,7 @@
             // 
             // LootsButton
             // 
-            this.LootsButton.Location = new System.Drawing.Point(12, 294);
+            this.LootsButton.Location = new System.Drawing.Point(12, 289);
             this.LootsButton.Name = "LootsButton";
             this.LootsButton.Size = new System.Drawing.Size(267, 74);
             this.LootsButton.TabIndex = 15;
@@ -180,7 +181,7 @@
             // 
             // StickersButton
             // 
-            this.StickersButton.Location = new System.Drawing.Point(12, 374);
+            this.StickersButton.Location = new System.Drawing.Point(12, 369);
             this.StickersButton.Name = "StickersButton";
             this.StickersButton.Size = new System.Drawing.Size(267, 74);
             this.StickersButton.TabIndex = 15;
@@ -188,11 +189,20 @@
             this.StickersButton.UseVisualStyleBackColor = true;
             this.StickersButton.Click += new System.EventHandler(this.StickersButton_Click);
             // 
+            // BlockedsListBox
+            // 
+            this.BlockedsListBox.FormattingEnabled = true;
+            this.BlockedsListBox.ItemHeight = 15;
+            this.BlockedsListBox.Location = new System.Drawing.Point(285, 247);
+            this.BlockedsListBox.Name = "BlockedsListBox";
+            this.BlockedsListBox.Size = new System.Drawing.Size(184, 94);
+            this.BlockedsListBox.TabIndex = 2;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(480, 460);
+            this.ClientSize = new System.Drawing.Size(480, 455);
             this.Controls.Add(this.StickersButton);
             this.Controls.Add(this.LootsButton);
             this.Controls.Add(this.ChampionsButton);
@@ -205,6 +215,7 @@
             this.Controls.Add(this.UsernameLabel);
             this.Controls.Add(this.TagTextBox);
             this.Controls.Add(this.NameTextBox);
+            this.Controls.Add(this.BlockedsListBox);
             this.Controls.Add(this.FriendsListBox);
             this.Controls.Add(this.NameLabel);
             this.Controls.Add(this.AvatarBorderPictureBox);
@@ -238,5 +249,6 @@
         private Button ChampionsButton;
         private Button LootsButton;
         private Button StickersButton;
+        private ListBox BlockedsListBox;
     }
 }

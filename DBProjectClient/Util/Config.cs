@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DBProjectClient.Util {
     public class Config {
-        private static Config config;
+        private static Config config = new Config();
 
         [JsonProperty]
         private string server = "";

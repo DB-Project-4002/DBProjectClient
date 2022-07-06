@@ -12,4 +12,22 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="MatchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="MatchHistoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="StickersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ChampionSkinsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="LootsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>
