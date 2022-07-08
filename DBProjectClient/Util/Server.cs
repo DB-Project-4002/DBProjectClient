@@ -72,10 +72,10 @@ namespace DBProjectClient.Util {
             var response = Post($"account/login", data);
             if (response["status"] == HttpStatusCode.Created) {
                 Config.Token = response["data"].token;
-                //Config.AccountId = response["data"].account_id;
+                Config.AccountId = response["data"].account_id;
             }
             else {
-                throw new Exception(response["error"].message);
+                throw new Exception((string)response["error"].message);
             }
         }
         public static void Register(string email, string username, string password) {
@@ -88,10 +88,10 @@ namespace DBProjectClient.Util {
             var response = Post($"account", data);
             if (response["status"] == HttpStatusCode.Created) {
                 Config.Token = response["data"].token;
-                //Config.AccountId = response["data"].account_id;
+                Config.AccountId = response["data"].account_id;
             }
             else {
-                throw new Exception(response["error"].message);
+                throw new Exception((string)response["error"].message);
             }
         }
 
@@ -101,7 +101,7 @@ namespace DBProjectClient.Util {
                 return response["data"][0];
             }
             else {
-                throw new Exception(response["error"].message);
+                throw new Exception((string)response["error"].message);
             }
         }
         
@@ -111,7 +111,7 @@ namespace DBProjectClient.Util {
                 return response["data"][0];
             }
             else {
-                throw new Exception(response["error"].message);
+                throw new Exception((string)response["error"].message);
             }
         }
 
@@ -121,29 +121,31 @@ namespace DBProjectClient.Util {
                 var matches = new List<MatchParticipation>();
                 foreach (var match in response["data"]) {
                     matches.Add(new MatchParticipation {
-                        AccountId = match.account_id ?? Config.AccountId,
+                        AccountId = (int)match.account_id,
+                        AccountUsername = $"{match.name}#{match.tag}",
+                        Team = match.team,
                         Time = DateTimeOffset.FromUnixTimeSeconds((long)match.time).LocalDateTime,
                         ChampionName = match.champion_name,
                         Grade = match.grade,
-                        Kills = match.kills,
-                        Deaths = match.deaths,
-                        Assists = match.assists,
-                        CS = match.cs,
-                        DS = match.ds,
-                        Dragons = match.dragons,
-                        Rifts = match.rifts,
-                        Item1Id = match.item_1 ?? 0,
-                        Item2Id = match.item_2 ?? 0,
-                        Item3Id = match.item_3 ?? 0,
-                        Item4Id = match.item_4 ?? 0,
-                        Item5Id = match.item_5 ?? 0,
-                        Item6Id = match.item_6 ?? 0,
+                        Kills = (int)match.kills,
+                        Deaths = (int)match.deaths,
+                        Assists = (int)match.assists,
+                        CS = (int)match.cs,
+                        DS = (int)match.ds,
+                        Dragons = (int)match.dragons,
+                        Rifts = (int)match.rifts,
+                        Item1Id = (int)(match.item_1.Value ?? 0),
+                        Item2Id = (int)(match.item_2.Value ?? 0),
+                        Item3Id = (int)(match.item_3.Value ?? 0),
+                        Item4Id = (int)(match.item_4.Value ?? 0),
+                        Item5Id = (int)(match.item_5.Value ?? 0),
+                        Item6Id = (int)(match.item_6.Value ?? 0)
                     });
                 }
                 return matches;
             }
             else {
-                throw new Exception(response["error"].message);
+                throw new Exception((string)response["error"].message);
             }
         }
 
@@ -153,30 +155,31 @@ namespace DBProjectClient.Util {
                 var matches = new List<MatchParticipation>();
                 foreach (var match in response["data"]) {
                     matches.Add(new MatchParticipation {
-                        AccountId = match.account_id ?? Config.AccountId,
-                        AccountUsername = $"{match.account_name}#{match.account_tag}",
+                        AccountId = (int)match.account_id,
+                        AccountUsername = $"{match.name}#{match.tag}",
+                        Team = match.team,
                         Time = DateTimeOffset.FromUnixTimeSeconds((long)match.time).LocalDateTime,
                         ChampionName = match.champion_name,
                         Grade = match.grade,
-                        Kills = match.kills,
-                        Deaths = match.deaths,
-                        Assists = match.assists,
-                        CS = match.cs,
-                        DS = match.ds,
-                        Dragons = match.dragons,
-                        Rifts = match.rifts,
-                        Item1Id = match.item_1 ?? 0,
-                        Item2Id = match.item_2 ?? 0,
-                        Item3Id = match.item_3 ?? 0,
-                        Item4Id = match.item_4 ?? 0,
-                        Item5Id = match.item_5 ?? 0,
-                        Item6Id = match.item_6 ?? 0,
+                        Kills = (int)match.kills,
+                        Deaths = (int)match.deaths,
+                        Assists = (int)match.assists,
+                        CS = (int)match.cs,
+                        DS = (int)match.ds,
+                        Dragons = (int)match.dragons,
+                        Rifts = (int)match.rifts,
+                        Item1Id = (int)(match.item_1.Value ?? 0),
+                        Item2Id = (int)(match.item_2.Value ?? 0),
+                        Item3Id = (int)(match.item_3.Value ?? 0),
+                        Item4Id = (int)(match.item_4.Value ?? 0),
+                        Item5Id = (int)(match.item_5.Value ?? 0),
+                        Item6Id = (int)(match.item_6.Value ?? 0)
                     });
                 }
                 return matches;
             }
             else {
-                throw new Exception(response["error"].message);
+                throw new Exception((string)response["error"].message);
             }
         }
 
@@ -194,7 +197,7 @@ namespace DBProjectClient.Util {
                 return champions;
             }
             else {
-                throw new Exception(response["error"].message);
+                throw new Exception((string)response["error"].message);
             }
         }
         public static List<Champion> GetChampions(int accountId) {
@@ -203,15 +206,14 @@ namespace DBProjectClient.Util {
                 var champions = new List<Champion>();
                 foreach (var champion in response["data"]) {
                     champions.Add(new Champion {
-                        Name = champion.name,
-                        BlueEssencePrice = champion.blue_essence_price,
-                        GameCreditPrice = champion.game_credit_price
+                        Name = champion.champion_name,
+                        Owned = true
                     });
                 }
                 return champions;
             }
             else {
-                throw new Exception(response["error"].message);
+                throw new Exception((string)response["error"].message);
             }
         }
         public static bool BuyChampion(int accountId, string championName) {
@@ -220,7 +222,7 @@ namespace DBProjectClient.Util {
                 return true;
             }
             else {
-                throw new Exception(response["error"].message);
+                throw new Exception((string)response["error"].message);
             }
         }
 
@@ -239,7 +241,7 @@ namespace DBProjectClient.Util {
                 return skins;
             }
             else {
-                throw new Exception(response["error"].message);
+                throw new Exception((string)response["error"].message);
             }
         }
         public static List<ChampionSkin> GetChampionSkins(int accountId, string championName) {
@@ -250,14 +252,13 @@ namespace DBProjectClient.Util {
                     skins.Add(new ChampionSkin {
                         Name = skin.name,
                         ChampionName = skin.champion_name,
-                        OrangeEssencePrice = skin.orange_essence_price,
-                        GameCreditPrice = skin.game_credit_price
+                        Owned = true
                     });
                 }
                 return skins;
             }
             else {
-                throw new Exception(response["error"].message);
+                throw new Exception((string)response["error"].message);
             }
         }
         public static bool BuyChampionSkin(int accountId, string championName, string skinName) {
@@ -266,7 +267,7 @@ namespace DBProjectClient.Util {
                 return true;
             }
             else {
-                throw new Exception(response["error"].message);
+                throw new Exception((string)response["error"].message);
             }
         }
 
@@ -285,7 +286,7 @@ namespace DBProjectClient.Util {
                 return loots;
             }
             else {
-                throw new Exception(response["error"].message);
+                throw new Exception((string)response["error"].message);
             }
         }
         public static List<Loot> GetLoots(int accountId) {
@@ -301,7 +302,7 @@ namespace DBProjectClient.Util {
                 return loots;
             }
             else {
-                throw new Exception(response["error"].message);
+                throw new Exception((string)response["error"].message);
             }
         }
         public static bool BuyLoot(int accountId, string lootName) {
@@ -313,7 +314,7 @@ namespace DBProjectClient.Util {
                 return true;
             }
             else {
-                throw new Exception(response["error"].message);
+                throw new Exception((string)response["error"].message);
             }
         }
 
@@ -330,7 +331,7 @@ namespace DBProjectClient.Util {
                 return stickers;
             }
             else {
-                throw new Exception(response["error"].message);
+                throw new Exception((string)response["error"].message);
             }
         }
         public static List<Sticker> GetStickers(int accountId) {
@@ -346,7 +347,7 @@ namespace DBProjectClient.Util {
                 return stickers;
             }
             else {
-                throw new Exception(response["error"].message);
+                throw new Exception((string)response["error"].message);
             }
         }
         public static bool BuySticker(int accountId, string stickerName) {
@@ -358,7 +359,7 @@ namespace DBProjectClient.Util {
                 return true;
             }
             else {
-                throw new Exception(response["error"].message);
+                throw new Exception((string)response["error"].message);
             }
         }
         
@@ -378,37 +379,37 @@ namespace DBProjectClient.Util {
                 return friends;
             }
             else {
-                throw new Exception(response["error"].message);
+                throw new Exception((string)response["error"].message);
             }
         }
         public static bool AddFriend(string username) {
             Dictionary<string, dynamic> data = new Dictionary<string, dynamic> {
-                {"username", username},
+                {"target_username", username},
             };
             var response = Post($"account/{Config.AccountId}/friends", data);
-            if (response["status"] == HttpStatusCode.Created) {
+            if (response["status"] == HttpStatusCode.OK) {
                 return true;
             }
             else {
-                throw new Exception(response["error"].message);
+                throw new Exception((string)response["error"].message);
             }
         }
         public static bool BlockFriend(int accountId) {
-            var response = Patch($"account/{Config.AccountId}/friends/{Config.AccountId}");
-            if (response["status"] == HttpStatusCode.Created) {
+            var response = Patch($"account/{Config.AccountId}/friends/{accountId}");
+            if (response["status"] == HttpStatusCode.OK) {
                 return true;
             }
             else {
-                throw new Exception(response["error"].message);
+                throw new Exception((string)response["error"].message);
             }
         }
         public static bool DeleteFriend(int accountId) {
-            var response = Delete($"account/{Config.AccountId}/friends/{Config.AccountId}");
-            if (response["status"] == HttpStatusCode.Created) {
+            var response = Delete($"account/{Config.AccountId}/friends/{accountId}");
+            if (response["status"] == HttpStatusCode.OK) {
                 return true;
             }
             else {
-                throw new Exception(response["error"].message);
+                throw new Exception((string)response["error"].message);
             }
         }
     }

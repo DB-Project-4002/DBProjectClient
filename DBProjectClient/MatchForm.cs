@@ -29,11 +29,11 @@ namespace DBProjectClient {
             //matches.ForEach(match => { match.AccountUsername = accountUsernames[match.AccountId]; });
             
             MatchListBox.Items.Clear();
-            foreach (var match in matches.Where(match => match.Team == "Blue")) {
+            foreach (var match in matches.Where(match => match.Team == "BLUE")) {
                 MatchListBox.Items.Add(match);
             }
             MatchListBox.Items.Add("--------------------------------------------------------------------------");
-            foreach (var match in matches.Where(match => match.Team == "Red")) {
+            foreach (var match in matches.Where(match => match.Team == "RED")) {
                 MatchListBox.Items.Add(match);
             }
         }
