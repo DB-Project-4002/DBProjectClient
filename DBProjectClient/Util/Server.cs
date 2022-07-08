@@ -134,12 +134,12 @@ namespace DBProjectClient.Util {
                         DS = (int)match.ds,
                         Dragons = (int)match.dragons,
                         Rifts = (int)match.rifts,
-                        Item1Id = (int)(match.item_1.Value ?? 0),
-                        Item2Id = (int)(match.item_2.Value ?? 0),
-                        Item3Id = (int)(match.item_3.Value ?? 0),
-                        Item4Id = (int)(match.item_4.Value ?? 0),
-                        Item5Id = (int)(match.item_5.Value ?? 0),
-                        Item6Id = (int)(match.item_6.Value ?? 0)
+                        Item1 = (int)(match.item_1.Value ?? 0),
+                        Item2 = (int)(match.item_2.Value ?? 0),
+                        Item3 = (int)(match.item_3.Value ?? 0),
+                        Item4 = (int)(match.item_4.Value ?? 0),
+                        Item5 = (int)(match.item_5.Value ?? 0),
+                        Item6 = (int)(match.item_6.Value ?? 0)
                     });
                 }
                 return matches;
@@ -168,12 +168,12 @@ namespace DBProjectClient.Util {
                         DS = (int)match.ds,
                         Dragons = (int)match.dragons,
                         Rifts = (int)match.rifts,
-                        Item1Id = (int)(match.item_1.Value ?? 0),
-                        Item2Id = (int)(match.item_2.Value ?? 0),
-                        Item3Id = (int)(match.item_3.Value ?? 0),
-                        Item4Id = (int)(match.item_4.Value ?? 0),
-                        Item5Id = (int)(match.item_5.Value ?? 0),
-                        Item6Id = (int)(match.item_6.Value ?? 0)
+                        Item1 = (int)(match.item_1.Value ?? 0),
+                        Item2 = (int)(match.item_2.Value ?? 0),
+                        Item3 = (int)(match.item_3.Value ?? 0),
+                        Item4 = (int)(match.item_4.Value ?? 0),
+                        Item5 = (int)(match.item_5.Value ?? 0),
+                        Item6 = (int)(match.item_6.Value ?? 0)
                     });
                 }
                 return matches;

@@ -13,21 +13,21 @@
         public int DS { get; set; }
         public int Dragons { get; set; }
         public int Rifts { get; set; }
-        public int Item1Id { get; set; }
-        public int Item2Id { get; set; }
-        public int Item3Id { get; set; }
-        public int Item4Id { get; set; }
-        public int Item5Id { get; set; }
-        public int Item6Id { get; set; }
+        public int Item1 { get; set; }
+        public int Item2 { get; set; }
+        public int Item3 { get; set; }
+        public int Item4 { get; set; }
+        public int Item5 { get; set; }
+        public int Item6 { get; set; }
 
         public override string ToString() {
             var str = $"[{Time}] - {AccountUsername} - Champion: {ChampionName} - Grade: {Grade} - KDA: {Kills}/{Deaths}/{Assists} - CS: {CS} - DS: {DS} - Dragons: {Dragons} - Rifts: {Rifts}";
-            if (Item1Id != 0) str += $" - Item: {Item1Id}";
-            if (Item2Id != 0) str += $" - Item: {Item2Id}";
-            if (Item3Id != 0) str += $" - Item: {Item3Id}";
-            if (Item4Id != 0) str += $" - Item: {Item4Id}";
-            if (Item5Id != 0) str += $" - Item: {Item5Id}";
-            if (Item6Id != 0) str += $" - Item: {Item6Id}";
+            if (Item1 != 0) str += $" - Item: {Item1}";
+            if (Item2 != 0) str += $" - Item: {Item2}";
+            if (Item3 != 0) str += $" - Item: {Item3}";
+            if (Item4 != 0) str += $" - Item: {Item4}";
+            if (Item5 != 0) str += $" - Item: {Item5}";
+            if (Item6 != 0) str += $" - Item: {Item6}";
             return str;
         }
     }
