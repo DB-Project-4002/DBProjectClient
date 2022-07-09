@@ -150,7 +150,7 @@ namespace DBProjectClient.Util {
         }
 
         public static List<MatchParticipation> GetMatch(int accountId, DateTime time) {
-            var response = Get($"account/{accountId}/game/matches/{new DateTimeOffset(time).ToUnixTimeSeconds()}");
+            var response = Get($"/game/matches/{new DateTimeOffset(time).ToUnixTimeSeconds()}");
             if (response["status"] == HttpStatusCode.OK) {
                 var matches = new List<MatchParticipation>();
                 foreach (var match in response["data"]) {
